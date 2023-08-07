@@ -1,0 +1,5 @@
+/.mono
+/.import
+*.import
+*.csproj
+*.sln

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/HttpClient.cs" type="Script" id=1]
+
+[node name="HttpClient" type="HTTPRequest"]
+script = ExtResource( 1 )
+IPAdress = "http://92.53.127.124/db"
