@@ -12,7 +12,7 @@ public class HttpClient : HTTPRequest
     {
         base._Ready();
     }
-    private void OnPlayerKilled(string name, int score)
+    private void OnGameEnded(string name, int score)
     {
         SetScore(name, score);
     }

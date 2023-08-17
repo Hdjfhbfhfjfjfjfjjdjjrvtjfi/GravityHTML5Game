@@ -1,21 +1,61 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/ColorrectBlack.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Game/Player.cs" type="Script" id=2]
+[ext_resource path="res://Assets/ColorrectBlue.png" type="Texture" id=1]
+[ext_resource path="res://Assets/ColorrectYellow.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ColorrectGreen.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Game/Player/Player.cs" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22.5, 17.75 )
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Running",
+"speed": 5.0
+} ]
 
-[node name="Player" type="RigidBody2D"]
-collision_mask = 10
-mode = 2
-can_sleep = false
-script = ExtResource( 2 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 0.5 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 1.49012e-08 )
-scale = Vector2( 1.02273, 1.01429 )
-texture = ExtResource( 1 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 0.01, 7.95 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 1 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 4 )
+
+[node name="Animations" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Running"
+frame = 1
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( 0, 7.5 )
+shape = SubResource( 2 )
+
+[node name="FrontHitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontHitBox"]
+position = Vector2( 8, 0 )
+shape = SubResource( 3 )
+
+[node name="HeadHitBox" type="Area2D" parent="."]
+position = Vector2( 0, -7 )
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHitBox"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="FrontHitBox" to="." method="OnHitBoxEntered"]
+[connection signal="area_entered" from="HeadHitBox" to="." method="OnHitBoxEntered"]

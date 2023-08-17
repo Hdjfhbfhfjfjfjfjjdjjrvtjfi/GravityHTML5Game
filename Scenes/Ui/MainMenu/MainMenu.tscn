@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Ui/MarginContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/GuildensternNbp.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Ui/MainMenu/MainMenu.cs" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_top = 58.0
+margin_right = 320.0
+margin_bottom = 412.0
+custom_constants/separation = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 50.0
+margin_right = 270.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 1 )
+text = "Tori Time"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 185.0
+margin_right = 320.0
+margin_bottom = 315.0
+custom_constants/separation = 50
+
+[node name="StartContainer" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 320.0
+
+[node name="Start" type="Button" parent="VBoxContainer/VBoxContainer/StartContainer"]
+margin_left = 50.0
+margin_right = 270.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "Start"
+
+[node name="ScoresContainer2" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 90.0
+margin_right = 320.0
+margin_bottom = 130.0
+
+[node name="Scores" type="Button" parent="VBoxContainer/VBoxContainer/ScoresContainer2"]
+margin_left = 50.0
+margin_right = 270.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 3 )
+text = "Scores"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/StartContainer/Start" to="." method="OnStartPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ScoresContainer2/Scores" to="." method="OnScoresPressed"]

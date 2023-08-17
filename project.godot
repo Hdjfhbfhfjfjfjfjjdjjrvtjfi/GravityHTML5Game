@@ -27,10 +27,15 @@ common/drop_mouse_on_gui_input_disabled=true
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="Walls"
-2d_physics/layer_3="Traps"
-2d_physics/layer_4="PhysicsOverriding"
+2d_physics/layer_1="GroundandWalls"
+2d_physics/layer_2="PlayerHitBox"
+2d_physics/layer_3="TouchTracker"
+2d_physics/layer_4="EdgeOfScreenObstacles"
+
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/max_log_files=20
 
 [mono]
 

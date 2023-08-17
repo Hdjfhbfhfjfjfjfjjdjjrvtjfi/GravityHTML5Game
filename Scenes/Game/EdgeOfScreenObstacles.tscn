@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 168.5, 13 )
+
+[node name="EdgeOfScreenObstacles" type="Node"]
+
+[node name="Up" type="Area2D" parent="."]
+position = Vector2( 162, -16 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2( -4.5, 3 )
+shape = SubResource( 1 )
+
+[node name="Down" type="Area2D" parent="."]
+position = Vector2( 163, 490 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2( -4.5, 3 )
+shape = SubResource( 1 )

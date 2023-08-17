@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Ui/Scores/LabelComponent.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/GuildensternNbp.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Ui/MarginContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Ui/Scores/Scores.cs" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="Scores" type="Node"]
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 480.0
+custom_constants/separation = 70
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 102.0
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 52.0
+margin_right = 268.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 1 )
+text = "Scores"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 172.0
+margin_right = 320.0
+margin_bottom = 374.0
+custom_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 122.0
+custom_constants/separation = 10
+
+[node name="1" parent="VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 320.0
+margin_bottom = 34.0
+
+[node name="2" parent="VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 44.0
+margin_right = 320.0
+margin_bottom = 78.0
+
+[node name="3" parent="VBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 88.0
+margin_right = 320.0
+margin_bottom = 122.0
+
+[node name="ExitContainer" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 162.0
+margin_right = 320.0
+margin_bottom = 202.0
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer/ExitContainer"]
+margin_left = 50.0
+margin_right = 270.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ExitContainer/Button" to="." method="OnExitPressed"]
