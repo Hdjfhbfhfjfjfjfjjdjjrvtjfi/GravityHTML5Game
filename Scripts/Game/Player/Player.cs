@@ -19,7 +19,7 @@ public class Player : KinematicBody2D
     }
     public override void _PhysicsProcess(float delta)
     {
-        base._PhysicsProcess(delta);
+        base._PhysicsProcess(delta);    
         Vector2 velocity = new Vector2(0, GravityStrenght) * delta * (int)GravityState;
         KinematicCollision2D collision = MoveAndCollide(velocity);
         if (collision != null)
