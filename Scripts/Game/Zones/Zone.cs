@@ -1,7 +1,8 @@
 using Godot;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using System.Drawing;
+using System.Security.Cryptography;
 
 public class Zone : Node2D
 {
@@ -17,14 +18,18 @@ public class Zone : Node2D
         StartPosition = GetNode<Position2D>(nameof(StartPosition));
         EndPosition = GetNode<Position2D>(nameof(EndPosition));
     }
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
     {
-        base._PhysicsProcess(delta);
-        Position -= new Vector2(100 , 0) * delta;
+        base._Process(delta);
         if (EndPosition.GlobalPosition.x <= -10)
         {
             EmitSignal(nameof(ZoneDeleted));
             QueueFree();
         }
+    }
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+        Position -= new Vector2(200 , 0) * delta;
     }
 }

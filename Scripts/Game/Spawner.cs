@@ -1,26 +1,21 @@
 using Godot;
-using Godot.Collections;
 using System;
-using System.Net.NetworkInformation;
 
 public class Spawner : Node
 {
     [Export]
     private PackedScene StartScene { get; set; }
     [Export]
-    private Dictionary<bool, PackedScene[]> Scenes { get; set; }
-    private Dictionary<bool, int> ScenesLength { get; set; }
     private Random random {  get; set; }
+    private ZoneStorage Zones { get; set; }
+    private string LastZoneName { get; set; }
     public Zone lastScene { private set; get; }
     public override void _Ready()
     {
         base._Ready();
         random = new Random();
-        ScenesLength = new Dictionary<bool, int>
-        {
-            { true, Scenes[true].Length },
-            { false, Scenes[false].Length }
-        };
+        Zones = GetNode<ZoneStorage>($"../../{nameof(ZoneStorage)}");
+        LastZoneName = "Tunnel";
         lastScene = StartScene.Instance<Zone>();
         lastScene.init();
         lastScene.Position = Vector2.Zero;
@@ -32,9 +27,20 @@ public class Spawner : Node
     }
     private void AddZone()
     {
-        Zone zone = Scenes[lastScene.Connection][random.Next(ScenesLength[lastScene.Connection])].Instance<Zone>();
+        string name = "";
+        while (true)
+        {
+            string s = Zones.ZonesNames[random.Next(Zones.ZonesNames.Length)];
+            if (s != LastZoneName)
+            {
+                name = s;
+                break;
+            }
+        }
+        LastZoneName = name;
+        Zone zone = Zones.Scenes[name][lastScene.Connection][random.Next(Zones.Scenes[name][lastScene.Connection].Length)].Instance<Zone>();
         zone.init();
-        zone.Position = lastScene.EndPosition.GlobalPosition - (zone.StartPosition.Position - zone.Position) - new Vector2(10, 0)      ;
+        zone.Position = lastScene.EndPosition.GlobalPosition - (zone.StartPosition.Position - zone.Position) - new Vector2(10, 0);
         zone.Connect(nameof(Zone.ZoneDeleted), this, nameof(OnZoneDeleted));
         AddChild(zone);
         lastScene = zone;

@@ -31,6 +31,8 @@ common/drop_mouse_on_gui_input_disabled=true
 2d_physics/layer_2="PlayerHitBox"
 2d_physics/layer_3="TouchTracker"
 2d_physics/layer_4="EdgeOfScreenObstacles"
+2d_physics/layer_5="Coins"
+2d_physics/layer_6="HidingParts"
 
 [logging]
 
