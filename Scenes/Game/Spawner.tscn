@@ -5,4 +5,4 @@
 
 [node name="Spawner" type="Node"]
 script = ExtResource( 1 )
-StartScene = ExtResource( 2 )
+startScene = ExtResource( 2 )

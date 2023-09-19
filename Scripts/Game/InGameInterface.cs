@@ -1,26 +1,29 @@
 using Godot;
-using System;
+using Attributes;
 
-public class InGameInterface : Node
+namespace Main.Game
 {
-    [Signal]
-    public delegate void PlayerKilled(int score);
-    private Label ScoreLabel { set; get; }
-    private int ScoreNumber { set; get; }
-    public override void _Ready()
+    public class InGameInterface : Node
     {
-        base._Ready();
-        ScoreNumber = 0;
-        ScoreLabel = GetNode<Label>("Label");
-        ScoreLabel.Text = ScoreNumber.ToString();
-    }
-    private void OnTimeout()
-    {
-        ScoreNumber += 1;
-        ScoreLabel.Text = ScoreNumber.ToString();
-    }
-    private void OnPlayerKilled()
-    {
-        EmitSignal(nameof(PlayerKilled), ScoreNumber);
+        [Signal]
+        public delegate void PlayerKilled(int score);
+        [Node(nameof(Label))]
+        private Label scoreLabel { set; get; }
+        private int scoreNumber { set; get; } = 0;
+        public override void _Ready()
+        {
+            base._Ready();
+            this.WireNodes();
+            scoreLabel.Text = scoreNumber.ToString();
+        }
+        private void OnTimeout()
+        {
+            scoreNumber += 1;
+            scoreLabel.Text = scoreNumber.ToString();
+        }
+        private void OnPlayerKilled()
+        {
+            EmitSignal(nameof(PlayerKilled), scoreNumber);
+        }
     }
 }

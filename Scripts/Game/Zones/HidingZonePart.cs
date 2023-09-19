@@ -1,37 +1,43 @@
 using Godot;
-using System;
+using System.Linq;
+using Attributes;
+using PlayerNamespace = Main.Game.Player;
 
-public class HidingZonePart : Area2D
+namespace Main.Game.Zones
 {
-    private Tween Tweener { get; set; }
-    private Sprite Image { get; set; }
-    private Color StartSpriteImageModulate { get; set; }
-    private Color FinalSpriteImageModulate { get; set; }
-    public override void _Ready()
+    public class HidingZonePart : Area2D
     {
-        base._Ready();
-        Image = GetNode<Sprite>(nameof(Sprite));
-        StartSpriteImageModulate = Image.Modulate;
-        FinalSpriteImageModulate = new Color(StartSpriteImageModulate.r, StartSpriteImageModulate.g, StartSpriteImageModulate.b, 0f);
-        Tweener = GetNode<Tween>(nameof(Tween));
-    }
-    private void StartInterpolating(Color startVal, Color finalVal)
-    {
-        Tweener.InterpolateProperty(Image, "modulate", startVal, finalVal, 1);
-        Tweener.Start();
-    }
-    private void OnBodyEntered(Node body)
-    {
-        if (body is Player)
+        [Node(nameof(Tween))]
+        private Tween tweener { get; set; }
+        [Node(nameof(Sprite))]
+        private Sprite image { get; set; }
+        private Color startSpriteImageModulate { get; set; }
+        private Color finalSpriteImageModulate { get; set; }
+        public override void _Ready()
         {
-            StartInterpolating(StartSpriteImageModulate, FinalSpriteImageModulate);
+            base._Ready();
+            this.WireNodes();
+            startSpriteImageModulate = image.Modulate;
+            finalSpriteImageModulate = new Color(startSpriteImageModulate.r, startSpriteImageModulate.g, startSpriteImageModulate.b, 0f);
         }
-    }
-    private void OnBodyExited(Node body)
-    {
-        if (body is Player)
+        private void OnBodyEntered(Node body)
         {
-            StartInterpolating(FinalSpriteImageModulate, StartSpriteImageModulate);
+            if (body is PlayerNamespace.Player)
+            {
+                StartInterpolating(startSpriteImageModulate, finalSpriteImageModulate);
+            }
+        }
+        private void OnBodyExited(Node body)
+        {
+            if (body is PlayerNamespace.Player)
+            {
+                StartInterpolating(finalSpriteImageModulate, startSpriteImageModulate);
+            }
+        }
+        private void StartInterpolating(Color startVal, Color finalVal)
+        {
+            tweener.InterpolateProperty(image, "modulate", startVal, finalVal, 1);
+            tweener.Start();
         }
     }
 }

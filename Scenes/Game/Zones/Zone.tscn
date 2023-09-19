@@ -6,9 +6,9 @@
 [node name="Zone" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="StartPosition" type="Position2D" parent="."]
+[node name="startPosition" type="Position2D" parent="."]
 
 [node name="ZonesTileMap" parent="." instance=ExtResource( 1 )]
 show_collision = false
 
-[node name="EndPosition" type="Position2D" parent="."]
+[node name="endPosition" type="Position2D" parent="."]

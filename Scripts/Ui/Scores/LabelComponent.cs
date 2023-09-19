@@ -1,12 +1,16 @@
 using Godot;
-using System;
+using Attributes;
 
-public class LabelComponent : MarginContainer
+namespace Main.UI.Scores
 {
-    public Label Text { get; private set; }
-    public override void _Ready()
+    public class LabelComponent : MarginContainer
     {
-        base._Ready();
-        Text = GetNode<Label>("Label");
+        [Node(nameof(Label))]
+        public Label text { get; private set; }
+        public override void _Ready()
+        {
+            base._Ready();
+            this.WireNodes();
+        }
     }
 }

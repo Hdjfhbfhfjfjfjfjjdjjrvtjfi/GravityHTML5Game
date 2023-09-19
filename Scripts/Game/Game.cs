@@ -1,19 +1,24 @@
 using Godot;
-using System;
+using Attributes;
+using PlayerNamespace = Main.Game.Player;
 
-public class Game : Node
+namespace Main.Game
 {
-    [Signal]
-    public delegate void GameEnded(int score);
-    public Player player { get; private set; }
-    public override void _Ready()
+    public class Game : Node
     {
-        base._Ready();
-        player = GetNode<Player>("Player");
-    }
-    private void OnPlayerKilled(int score)
-    {
-        EmitSignal(nameof(GameEnded), score);
-        QueueFree();
+        [Signal]
+        public delegate void GameEnded(int score);
+        [Node(nameof(Player))]
+        public PlayerNamespace.Player player { get; private set; }
+        public override void _Ready()
+        {
+            base._Ready();
+            this.WireNodes();
+        }
+        private void OnPlayerKilled(int score)
+        {
+            EmitSignal(nameof(GameEnded), score);
+            QueueFree();
+        }
     }
 }

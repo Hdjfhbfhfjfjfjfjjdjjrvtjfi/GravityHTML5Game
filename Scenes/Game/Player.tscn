@@ -30,8 +30,9 @@ extents = Vector2( 8, 8 )
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 48
 script = ExtResource( 4 )
+gravityStrenght = 600
 
-[node name="Animations" type="AnimatedSprite" parent="."]
+[node name="animations" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Falling"
 playing = true

@@ -1,16 +1,18 @@
 using Godot;
-using System;
 
-public class JavaScriptInterface : Node
+namespace Main
 {
-    private JavaScriptObject Window { get; set; }
-    public override void _Ready()
+    public class JavaScriptInterface : Node
     {
-        base._Ready();
-        Window = JavaScript.GetInterface("window");
-    }
-    public string GetUserName()
-    {
-        return (string)Window.Call("getParams");
+        private JavaScriptObject window { get; set; }
+        public override void _Ready()
+        {
+            base._Ready();
+            window = JavaScript.GetInterface("window");
+        }
+        public string GetUserName()
+        {
+            return window.Call("getParams").ToString();
+        }
     }
 }

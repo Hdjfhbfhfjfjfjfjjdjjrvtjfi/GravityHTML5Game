@@ -1,14 +1,13 @@
-using Godot;
-using System;
-
-
-enum PlayerGravityState
+namespace Main.Game.Player
 {
-    Up = -1,
-    Down = 1,
-}
-public enum PlayerState
-{
-    OnGround,
-    NotOnGround
+    enum PlayerGravityState
+    {
+        Up = -1,
+        Down = 1,
+    }
+    public enum PlayerState
+    {
+        OnGround,
+        NotOnGround
+    }
 }
