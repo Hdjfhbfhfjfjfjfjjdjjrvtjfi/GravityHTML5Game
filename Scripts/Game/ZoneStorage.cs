@@ -1,20 +1,24 @@
 using Godot;
 using Godot.Collections;
+using Main.Game.Zones;
 
-public class ZoneStorage : Node
+namespace Main.Game
 {
-    [Export]
-    public Dictionary<string, Dictionary<bool, PackedScene[]>> Scenes { get; private set; }
-    public string[] ZonesNames { get; private set; }
-    public override void _Ready()
+    public class ZoneStorage : Node
     {
-        base._Ready();
-        ZonesNames = new string[Scenes.Keys.Count];
-        int i = 0;
-        foreach (string name in Scenes.Keys)
+        [Export]
+        public Dictionary<ZoneNames, Dictionary<bool, PackedScene[]>> scenes { get; private set; }
+        public ZoneNames[] zonesNames { get; private set; }
+        public override void _Ready()
         {
-            ZonesNames[i] = name;
-            i++;
+            base._Ready();
+            zonesNames = new ZoneNames[scenes.Keys.Count];
+            int i = 0;
+            foreach (ZoneNames name in scenes.Keys)
+            {
+                zonesNames[i] = name;
+                i++;
+            }
         }
     }
 }

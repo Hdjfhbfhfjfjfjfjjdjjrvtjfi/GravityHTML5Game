@@ -1,35 +1,36 @@
+using Attributes;
 using Godot;
-using System.Collections.Generic;
-using System.Linq;
-using System.Drawing;
-using System.Security.Cryptography;
 
-public class Zone : Node2D
+namespace Main.Game.Zones
 {
-    [Signal]
-    public delegate void ZoneDeleted();
-    // False is down, true is up
-    [Export]
-    public bool Connection { private set; get; }
-    public Position2D StartPosition { private set; get; }
-    public Position2D EndPosition { private set; get; }
-    public void init()
+    public class Zone : Node2D
     {
-        StartPosition = GetNode<Position2D>(nameof(StartPosition));
-        EndPosition = GetNode<Position2D>(nameof(EndPosition));
-    }
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-        if (EndPosition.GlobalPosition.x <= -10)
+        [Signal]
+        public delegate void ZoneDeleted();
+        // False is down, true is up
+        [Export]
+        public bool connection { private set; get; }
+        [Node(nameof(startPosition))]
+        public Position2D startPosition { private set; get; }
+        [Node(nameof(endPosition))]
+        public Position2D endPosition { private set; get; }
+        public void init()
         {
-            EmitSignal(nameof(ZoneDeleted));
-            QueueFree();
+            this.WireNodes();  
         }
-    }
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
-        Position -= new Vector2(200 , 0) * delta;
+        public override void _Process(float delta)
+        {
+            base._Process(delta);
+            if (endPosition.GlobalPosition.x <= -10)
+            {
+                EmitSignal(nameof(ZoneDeleted));
+                QueueFree();
+            }
+        }
+        public override void _PhysicsProcess(float delta)
+        {
+            base._PhysicsProcess(delta);
+            Position -= new Vector2(200, 0) * delta;
+        }
     }
 }

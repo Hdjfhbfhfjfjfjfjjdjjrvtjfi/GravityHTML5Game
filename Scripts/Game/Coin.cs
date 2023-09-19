@@ -1,31 +1,34 @@
 using Godot;
-using System;
+using Attributes;
+using PlayerNamespace = Main.Game.Player;
 
-public class Coin : Area2D
+namespace Main.Game
 {
-    [Signal]
-    public delegate void Gathered();
-    private AnimatedSprite Animations { get; set; }
-    public override void _Ready()
+    public class Coin : Area2D
     {
-        base._Ready();
-        Animations = GetNode<AnimatedSprite>(nameof(AnimatedSprite));
-    }
-    private void OnBodyEntered(Node body)
-    {
-        if (body is Player)
+        [Signal]
+        public delegate void Gathered();
+        [Node(nameof(AnimatedSprite))]
+        private AnimatedSprite animations { get; set; }
+        public override void _Ready()
         {
-            EmitSignal(nameof(Gathered));
-            Animations.Play("Gathered");
+            base._Ready();
+            this.WireNodes();
+        }
+        private void OnBodyEntered(Node body)
+        {
+            if (body is PlayerNamespace.Player)
+            {
+                EmitSignal(nameof(Gathered));
+                animations.Play("Gathered");
+            }
+        }
+        private void OnAnimationFinished()
+        {
+            if (animations.Animation == "Gathered")
+            {
+                QueueFree();
+            }
         }
     }
-    private void OnAnimationFinished()
-    {
-        if (Animations.Animation == "Gathered")
-        {
-            QueueFree();
-        }
-    }
-
-
 }
