@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Linq;
 using Main.Game.Zones;
 
 namespace Main.Game
@@ -12,13 +13,8 @@ namespace Main.Game
         public override void _Ready()
         {
             base._Ready();
-            zonesNames = new ZoneNames[scenes.Keys.Count];
-            int i = 0;
-            foreach (ZoneNames name in scenes.Keys)
-            {
-                zonesNames[i] = name;
-                i++;
-            }
+            zonesNames = (from key in scenes.Keys
+                          select key).ToArray();
         }
     }
 }

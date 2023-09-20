@@ -1,60 +1,6 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scripts/Game/ZoneStorage.cs" type="Script" id=1]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Small/SmallTunnelZoneDownToDown.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Middle/MiddleTunnelZoneDownToUp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Game/Zones/Up/Collumns/Big/BigCollumnsUpToDown.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Game/Zones/Down/Collumns/Middle/MiddleCollumnsDownToDown.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Game/Zones/Up/Collumns/Big/BigCollumnsUpToUp.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Big/BigTunnelZoneDownToUp.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Game/Zones/Up/Collumns/Middle/MiddleCollumnsUpToDown.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Game/Zones/Down/Collumns/Big/BigCollumnsDownToDown.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Big/BigTunnelZoneUpToUp.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Game/Zones/Down/Collumns/Big/BigCollumnsDownToUp.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Middle/MiddleTunnelZoneUpToDown.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Middle/MiddleTunnelZoneUpToUp.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Game/Zones/Up/Collumns/Middle/MiddleCollumnsUpToUp.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Big/BigTunnelZoneDownToDown.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Game/Zones/Down/Collumns/Middle/MiddleCollumnsDownToUp.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Middle/MiddleTunnelZoneDownToDown.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Game/Zones/Down/Tunnels/Small/SmallTunnelZoneDownToUp.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Small/SmallTunnelZoneUpToDown.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Big/BigTunnelZoneUpToDown.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/Game/Zones/Up/Tunnels/Small/SmallTunnelZoneUpToUp.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Small/SmallLadderDownToUp.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Small/SmallInvertedLadderDownToDown.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Small/SmallInvertedLadderDownToUp.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Middle/MiddleLadderUpToDown.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Middle/MiddleLadderUpToUp.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Middle/MiddleLadderDownToUp.tscn" type="PackedScene" id=27]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Small/SmallInvertedLadderUpToUp.tscn" type="PackedScene" id=28]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Small/SmallInvertedLadderUpToDown.tscn" type="PackedScene" id=29]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Small/SmallLadderUpToUp.tscn" type="PackedScene" id=30]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Small/SmallLadderUpToDown.tscn" type="PackedScene" id=31]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Middle/MiddleInvertedLadderUpToUp.tscn" type="PackedScene" id=32]
-[ext_resource path="res://Scenes/Game/Zones/Up/Ladders/Middle/MiddleInvertedLadderUpToDown.tscn" type="PackedScene" id=33]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Middle/MiddleInvertedLadderDownToUp.tscn" type="PackedScene" id=34]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Small/SmallLadderDownToDown.tscn" type="PackedScene" id=35]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Middle/MiddleInvertedLadderDownToDown.tscn" type="PackedScene" id=36]
-[ext_resource path="res://Scenes/Game/Zones/Down/Ladders/Middle/MiddleLadderDownToDown.tscn" type="PackedScene" id=37]
 
 [node name="ZoneStorage" type="Node"]
 script = ExtResource( 1 )
-Scenes = {
-"Collumns": {
-false: [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 5 ), ExtResource( 16 ) ],
-true: [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ) ]
-},
-"InvertedLadder": {
-false: [ ExtResource( 36 ), ExtResource( 34 ), ExtResource( 23 ), ExtResource( 24 ) ],
-true: [ ExtResource( 33 ), ExtResource( 32 ), ExtResource( 29 ), ExtResource( 28 ) ]
-},
-"Ladder": {
-false: [ ExtResource( 37 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 22 ) ],
-true: [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 31 ), ExtResource( 30 ) ]
-},
-"Tunnel": {
-false: [ ExtResource( 15 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 18 ) ],
-true: [ ExtResource( 20 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 19 ), ExtResource( 21 ) ]
-}
-}
